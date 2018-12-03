@@ -30,14 +30,23 @@ DBS="$($MYSQL --login-path=local -Bse 'show databases')";
 for DBNAME in $DBS
 do
 	# skip the system databases
-	if [ "$DBNAME" != "performance_schema" ] && [ "$DBNAME" != "mysql" ] && [ "$DBNAME" != "information_schema" ] && [ "$DBNAME" != "sys" ]
+	if [ "$DBNAME" != "performance_schema" ] &&
+	[ "$DBNAME" != "mysql" ] &&
+	[ "$DBNAME" != "information_schema" ] &&
+	[ "$DBNAME" != "sys" ]
 	then
 		# dump the data into a SQL file inside the target path
 		$MYSQLDUMP --login-path=local -e  $DBNAME | gzip > $TARGETPATH/${DBNAME}-$NOWDATE.sql.gz;
-		printf "$DBNAME backed up to $TARGETPATH";
+		printf "$DBNAME backed up to $TARGETPATH\n";
 	fi
 done
 
 # sync with Amazon S3 using the CLI (with server side encryption)
 # install AWS CLI with instructions found here: https://linuxconfig.org/install-aws-cli-on-ubuntu-18-04-bionic-beaver-linux
-aws s3 sync $HOME/__data s3://{YOUR-S3-BUCKET}/$SITENAME --delete --sse;
+# check for existence of environment variable
+if [ -z "$S3BUCKET" ]
+then
+	echo "You need to set an ENVIRONMENT variable for the target S3BUCKET (e.g. export S3BUCKET=my-bucket-name)"
+else
+	aws s3 sync $HOME/__data s3://$S3BUCKET/$SITENAME --delete --sse;
+fi
