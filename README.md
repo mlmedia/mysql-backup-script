@@ -14,7 +14,7 @@ BASH script that automatically creates backups and uploads to and S3 bucket
 		- (copy bin executable to `/usr/local/bin`)
 		- `sudo cp /snap/bin/aws /usr/local/bin`
 		- (test if cron will work with script):
-			- `/bin/sh -c "(export PATH=/usr/bin:/bin:/usr/local/bin; /home/deploy/__scripts/mysql-backup.sh </dev/null)"`
+			- `/bin/sh -c "(export PATH=/usr/bin:/bin:/usr/local/bin; /root/__scripts/mysql-backup.sh </dev/null)"`
 	- (get and save AWS CLI access credentials from IAM user in safe place)
 	- `aws configure`
 	- (enter AWS Access Key ID)
@@ -28,4 +28,4 @@ BASH script that automatically creates backups and uploads to and S3 bucket
 	- `mysql_config_editor set --login-path=local --host=localhost --user=mysqlsuperuser --password`
 	- (enter password for mysqlsuper)
 7. (test mysql backup script):
-	- `sh ~/__scripts/mysql-backup.sh`
+	- `sh /root/__scripts/mysql-backup.sh`
