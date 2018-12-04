@@ -14,11 +14,11 @@ The installation instructions below work for a server running Ubuntu 18.04 (Bion
 ### Put the script on your server
 Upload the `mysql-backup.sh` backup script to server, for example in a `/root/__scripts/` directory.
 
-- SSH into the target server.
+First, SSH into the target server:
 ```bash
 ssh root@yoursite.com
 ```
-The following commands are to be made on command line in the server.
+The commands below are to be made on command line in the server.
 
 Change the permissions on the script to group execute:
 ```bash
