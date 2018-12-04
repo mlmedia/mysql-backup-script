@@ -11,7 +11,9 @@ For this script to work as intended, you will need the following set up:
 ## Installation
 1. (upload the `mysql-backup.sh` backup script to server, for example in a `/root/__scripts/` directory)
 2. (ssh into target server):
-	- (e.g.) `ssh root@yoursite.com`
+```bash
+ssh root@yoursite.com
+```
 3. (change the permissions on the script to group execute):
 	- `chmod -R 755 /root/__scripts/mysql-backup.sh`
 4. (install aws cli):
