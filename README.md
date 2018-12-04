@@ -55,11 +55,11 @@ Set environment var for S3 bucket.  This presumes you have already set up a buck
 export S3BUCKET=your-bucket-name
 ```
 
-Set up mysql config creds.  The below presumes you have set up a mysql user that has permissions on all databases targeted for backup.
+Set up mysql config creds.  The below presumes you have set up a mysql user called `mysqlsuperuser` that has permissions on all databases targeted for backup.  You can also use `root`, but this is safer.
 ```bash
 mysql_config_editor set --login-path=local --host=localhost --user=mysqlsuperuser --password
 ```
-Enter password for `mysqlsuper`.
+Enter password for `mysqlsuperuser`.
 
 ### Test script
 ```bash
