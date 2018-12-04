@@ -3,7 +3,7 @@ BASH script that automatically creates backups and uploads to and S3 bucket
 
 ## Requirements
 For this script to work as intended, you will need the following set up:
- 	- server with Linux installed as the operating system
+	- server with Linux installed as the operating system
 	- AWS hosting account
 	- AWS IAM user
 	- AWS S3 account
