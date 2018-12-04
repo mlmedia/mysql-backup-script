@@ -15,7 +15,7 @@ For this script to work as intended, you will need the following set up:
 3. (change the permissions on the script to group execute):
 	- `chmod -R 755 /root/__scripts/mysql-backup.sh`
 4. (install aws cli):
-	- ```sudo snap install aws-cli --classic && aws --version```
+	- `sudo snap install aws-cli --classic && aws --version`
 	- (find and move bin to standard bin location):
 		- `sudo find / -name "aws"`
 		- (copy bin executable to `/usr/local/bin`)
