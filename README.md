@@ -3,10 +3,10 @@ BASH script that automatically creates backups and uploads to and S3 bucket
 
 ## Requirements
 For this script to work as intended, you will need the following set up:
-	- server with Linux installed as the operating system
-	- AWS hosting account
-	- AWS IAM user
-	- AWS S3 account
+- server with Linux installed as the operating system
+- AWS hosting account
+- AWS IAM user
+- AWS S3 account
 
 ## Installation
 1. (upload the `mysql-backup.sh` backup script to server, for example in a `/root/__scripts/` directory)
