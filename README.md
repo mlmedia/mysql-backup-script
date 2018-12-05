@@ -16,7 +16,7 @@ The installation instructions below work for a server running *Ubuntu 18.04 (Bio
 ### Put the script on your server
 Upload the `mysql-backup.sh` backup script to server, for example in a `~/__scripts/` directory.
 
-First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  See the Requirements section of this README if SSH is not already set up on your server.
+First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  See the **_Requirements_** section of this README if SSH is not already set up on your server.
 
 ```bash
 ssh sshuser@yoursite.com
@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-
 chmod -R 755 ~/__scripts/mysql-backup.sh
 ```
 ### Install the AWS CLI
-You should have your IAM credentials ready to use in the next step.  If you do not already have an IAM user set up, see the Requirements section of this README.
+You should have your IAM credentials ready to use in the next step.  If you do not already have an IAM user set up, see the **_Requirements_** section of this README.
 
 ```bash
 sudo snap install aws-cli --classic && aws --version
@@ -57,13 +57,13 @@ When prompted, enter your AWS *Access Key ID* and *Secret Access Key*.  You can 
 ### Set config variables for the backup script
 Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
 
-If you do not already have an S3 bucket set up, see the Requirements section of this README.
+If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.
 
 ```bash
 export S3BUCKET=your-bucket-name
 ```
 
-Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  If you do not already have a database set up, see the Requirements section of this README.
+Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  If you do not already have a database set up, see the **_Requirements_** section of this README.
 
 ```bash
 mysql_config_editor set --login-path=local --host=localhost --user=mysqlsuperuser --password
