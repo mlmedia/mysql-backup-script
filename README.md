@@ -1,5 +1,5 @@
 # MySQL Backup Script
-BASH script that automatically creates backups and uploads to an S3 bucket.
+BASH script that automatically creates backups on multiple MySQL databases tied to a single user and uploads the exports to an S3 bucket.
 
 ## Requirements
 For this script to work as intended, you will need the following set up:
