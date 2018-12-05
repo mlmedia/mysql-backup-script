@@ -3,12 +3,12 @@ BASH script that automatically creates backups and uploads to an S3 bucket.
 
 ## Requirements
 For this script to work as intended, you will need the following set up:
-- Server with Linux installed as the operating system.
-- SSH access to the server, preferably using the SSH key handshake method.  For more information on installation, see https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804.
-- MySQL installed and at least database which will be the target for backup.  If you do not already have a database set up, follow the instructions at https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-ubuntu-18-04.
-- AWS hosting account with the following:
-	- IAM user with the user credentials saved for use below.  If you do not already have an IAM user set up, follow the instructions at https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console
-	- S3 instance set up with a bucket for use below.  If you do not have an S3 bucket set up, follow the instructions at https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html.
+- **Server with Linux** installed as the operating system.
+- **SSH access** to the server, preferably using the SSH key handshake method.  For more information on installation, see https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804.
+- **MySQL** installed and at least database which will be the target for backup.  If you do not already have a database set up, follow the instructions at https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-ubuntu-18-04.
+- **AWS** hosting account with the following:
+	- **IAM** user with the user credentials saved for use below.  If you do not already have an IAM user set up, follow the instructions at https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console
+	- **S3** instance set up with a bucket for use below.  If you do not have an S3 bucket set up, follow the instructions at https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html.
 
 ## Installation
 The installation instructions below work for a server running *Ubuntu 18.04 (Bionic Beaver)*.  Installation will likely be different on other operating systems and future versions.
