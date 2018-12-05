@@ -26,7 +26,10 @@ The commands below are to be made on command line in the server.
 Download the file directly into the target directory using the WGET command and then change the permissions on the script to allow it to execute.
 
 ```bash
-mkdir ~/__scripts && cd ~/__scripts && wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-backup.sh && chmod -R 755 ~/__scripts/mysql-backup.sh
+mkdir ~/__scripts &&
+cd ~/__scripts &&
+wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-backup.sh &&
+chmod -R 755 ~/__scripts/mysql-backup.sh
 ```
 ### Install the AWS CLI
 You should have your IAM credentials ready to use in the next step.  If you do not already have an IAM user set up, see the Requirements section of this README.
