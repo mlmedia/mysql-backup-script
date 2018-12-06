@@ -54,9 +54,15 @@ aws configure
 When prompted, enter your AWS `Access Key ID` and `Secret Access Key` from your IAM user credentials.  You can hit return to accept the default (none) settings for `region name` and `output format`.
 
 ### Set config variables for the backup script
-Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
+Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.  
 
-If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.
+First open or create a `.profile` file in your user root.
+
+```bash
+nano ~/.profile
+```
+
+Add the export command to permanently set your environment variable for *S3BUCKET*. The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
 
 ```bash
 export S3BUCKET=your-bucket-name
