@@ -17,8 +17,8 @@ Upload the `mysql-backup.sh` backup script to server, for example in a `~/__scri
 
 First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  See the **_Requirements_** section of this README if SSH is not already set up on your server.
 
-```bash
-ssh sshuser@yoursite.com
+```command
+$ ssh sshuser@yoursite.com
 ```
 The commands below are to be made on command line in the server.
 
