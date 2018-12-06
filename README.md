@@ -41,7 +41,7 @@ Find and move bin to standard bin location:
 sudo find / -name "aws" && sudo cp /snap/bin/aws /usr/local/bin
 ```
 
-Test if cron will work with script.
+Test if cron will work with the script.
 ```bash
 /bin/sh -c "(export PATH=/usr/bin:/bin:/usr/local/bin; ~/__scripts/mysql-backup.sh </dev/null)"
 ```
@@ -101,7 +101,7 @@ When the cron file opens, add a line for the script to run with appropriate freq
 MAILTO="you@yoursite.com"
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 SHELL=/bin/bash
-0 4 * * 1 ~/__scripts/mysql-backup.sh > ~/logs/mysql-backup-$(date +\%m\%d).log 2>&1
+0 4 * * 1 $HOME/__scripts/mysql-backup.sh > $HOME/logs/mysql-backup-$(date +\%m\%d).log 2>&1
 ```
 
 For example, the above it to set the script to run once a week at 4am on Monday.  In addition, the output will be logged to a file and time stamped.  
