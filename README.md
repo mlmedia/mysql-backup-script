@@ -62,10 +62,16 @@ First open or create a `.profile` file in your user root.
 nano ~/.profile
 ```
 
-Add the export command to permanently set your environment variable for *S3BUCKET*. The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
+Add the following line at the end of the file to permanently set your environment variable for *S3BUCKET*. The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
 
 ```bash
 export S3BUCKET=your-bucket-name
+```
+
+Log out and log in again.
+
+```bash
+exit
 ```
 
 Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  If you do not already have a database set up, see the **_Requirements_** section of this README.
@@ -100,11 +106,11 @@ SHELL=/bin/bash
 
 For example, the above it to set the script to run once a week at 4am on Monday.  In addition, the output will be logged to a file and time stamped.  
 
-In order to delete the old logs on a regular basis add the following line to the crontab, which will automatically run every day at 5am and delete log files older than 25 days.
+In order to delete the old logs on a regular basis, add the following line to the crontab.  The following will automatically run every day at 5am and delete log files older than 25 days.
 
 ```bash
 0 5 * * * find $HOME/logs/*.log -mtime +25 -exec rm -f {} \; > /dev/null 2>&1
 ```
 
 ### More testing
-Check your `~/__data` and `~/logs` files for a few days to make sure it's working as expected.  
+Check your `~/__data` and `~/logs` files and your S3 bucket for a few days to make sure it's working as expected.  
