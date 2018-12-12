@@ -47,7 +47,6 @@ Test if cron will work with the script.
 ```
 
 Configure the AWS CLI.
-
 ```
 aws configure
 ```
@@ -56,12 +55,10 @@ When prompted, enter your AWS `Access Key ID` and `Secret Access Key` from your 
 ### Set config variables for the backup script
 Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.  
 
-First open or create a `.profile` file in your user root.
-
 Create an S3BUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
 
 ```
-sudo nano /etc/environment 
+sudo nano /etc/environment
 ```
 Add the following line to the end of the file, using your S3 bucket name.
 ```
