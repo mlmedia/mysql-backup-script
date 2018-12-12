@@ -61,7 +61,7 @@ First open or create a `.profile` file in your user root.
 Create an S3BUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
 
 ```
-sudo nano /etc/ENVIRONMENT
+sudo nano /etc/environment 
 ```
 Add the following line to the end of the file, using your S3 bucket name.
 ```
