@@ -17,14 +17,14 @@ Upload the `mysql-backup.sh` backup script to server, for example in a `~/__scri
 
 First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  See the **_Requirements_** section of this README if SSH is not already set up on your server.
 
-```bash
+```
 ssh sshuser@yoursite.com
 ```
 The commands below are to be made on command line in the server.
 
 Download the file directly into the target directory using the WGET command and then change the permissions on the script to allow it to execute.
 
-```bash
+```
 mkdir ~/__scripts &&
 cd ~/__scripts &&
 wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-backup.sh &&
@@ -33,22 +33,22 @@ chmod -R 755 ~/__scripts/mysql-backup.sh
 ### Install the AWS CLI
 You should have your IAM credentials ready to use in the next step.  If you do not already have an IAM user set up, see the **_Requirements_** section of this README.
 
-```bash
+```
 sudo snap install aws-cli --classic && aws --version
 ```
 Find and move bin to standard bin location:
-```bash
+```
 sudo find / -name "aws" && sudo cp /snap/bin/aws /usr/local/bin
 ```
 
 Test if cron will work with the script.
-```bash
+```
 /bin/sh -c "(export PATH=/usr/bin:/bin:/usr/local/bin; ~/__scripts/mysql-backup.sh </dev/null)"
 ```
 
 Configure the AWS CLI.
 
-```bash
+```
 aws configure
 ```
 When prompted, enter your AWS `Access Key ID` and `Secret Access Key` from your IAM user credentials.  You can hit return to accept the default (none) settings for `region name` and `output format`.
@@ -58,31 +58,31 @@ Set environment var for S3 bucket.  This presumes you have already set up a buck
 
 First open or create a `.profile` file in your user root.
 
-```bash
-nano ~/.profile
+Create an S3BUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
+
 ```
-
-Add the following line at the end of the file to permanently set your environment variable for *S3BUCKET*. The below command uses a generic bucket name `your-bucket-name`.  You should replace with your appropriate value.
-
-```bash
-export S3BUCKET=your-bucket-name
+sudo nano /etc/ENVIRONMENT
+```
+Add the following line to the end of the file, using your S3 bucket name.
+```
+S3BUCKET=your-bucket-name
 ```
 
 Log out and log in again.
 
-```bash
+```
 exit
 ```
 
 Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  If you do not already have a database set up, see the **_Requirements_** section of this README.
 
-```bash
+```
 mysql_config_editor set --login-path=local --host=localhost --user=mysqlsuperuser --password
 ```
 Enter password for *mysqlsuperuser*.
 
 ### Test script
-```bash
+```
 sh ~/__scripts/mysql-backup.sh
 ```
 If the above backup database exports to a `~/__data` directory and successfully upload them to your S3 bucket, the next step is to simply setup a cronjob to automatically run the script on a schedule that works for you.
@@ -91,13 +91,13 @@ If the above backup database exports to a `~/__data` directory and successfully 
 Set up crontab to automatically run according to appropriate frequency.
 
 Make a logs directory if it doesn't already exist.
-```bash
+```
 mkdir ~/logs
 crontab -e
 ```
 When the cron file opens, add a line for the script to run with appropriate frequency with proper logging.
 
-```bash
+```
 MAILTO="you@yoursite.com"
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 SHELL=/bin/bash
@@ -108,7 +108,7 @@ For example, the above it to set the script to run once a week at 4am on Monday.
 
 In order to delete the old logs on a regular basis, add the following line to the crontab.  The following will automatically run every day at 5am and delete log files older than 25 days.
 
-```bash
+```
 0 5 * * * find $HOME/logs/*.log -mtime +25 -exec rm -f {} \; > /dev/null 2>&1
 ```
 
