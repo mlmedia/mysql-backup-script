@@ -15,7 +15,9 @@ For this script to work as intended, you will need the following set up:
 ### Put the script on your server
 Upload the `mysql-backup.sh` backup script to server, for example in a `~/__scripts/` directory.
 
-First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  See the **_Requirements_** section of this README if SSH is not already set up on your server.
+First, SSH into the target server.  The below is for a generic user called *sshuser*.  You should replace with your specific values.  
+
+See the **_Requirements_** section of this README if SSH is not already set up on your server.
 
 ```
 ssh sshuser@yoursite.com
@@ -31,14 +33,18 @@ wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-
 chmod -R 755 ~/__scripts/mysql-backup.sh
 ```
 ### Install the AWS CLI
-You should have your IAM credentials ready to use in the next step.  If you do not already have an IAM user set up, see the **_Requirements_** section of this README.
+You should have your IAM credentials ready to use in the next step.  
+
+If you do not already have an IAM user set up, see the **_Requirements_** section of this README.
 
 ```
-sudo snap install aws-cli --classic && aws --version
+sudo snap install aws-cli --classic &&
+aws --version
 ```
 Find and move bin to standard bin location:
 ```
-sudo find / -name "aws" && sudo cp /snap/bin/aws /usr/local/bin
+sudo find / -name "aws" &&
+sudo cp /snap/bin/aws /usr/local/bin
 ```
 
 Test if cron will work with the script.
@@ -53,7 +59,9 @@ aws configure
 When prompted, enter your AWS `Access Key ID` and `Secret Access Key` from your IAM user credentials.  You can hit return to accept the default (none) settings for `region name` and `output format`.
 
 ### Set config variables for the backup script
-Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.  
+Set environment var for S3 bucket.  This presumes you have already set up a bucket under the S3 section in the above AWS account.  
+
+If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.  
 
 Create an S3BUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
 
@@ -71,7 +79,9 @@ Log out and log in again.
 exit
 ```
 
-Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  If you do not already have a database set up, see the **_Requirements_** section of this README.
+Set up mysql config creds.  The below presumes you have set up a mysql user called *mysqlsuperuser* that has permissions on all databases targeted for backup.  You can also use *root*, but this is safer.  
+
+If you do not already have a database set up, see the **_Requirements_** section of this README.
 
 ```
 mysql_config_editor set --login-path=local --host=localhost --user=mysqlsuperuser --password
