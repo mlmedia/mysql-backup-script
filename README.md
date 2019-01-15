@@ -26,8 +26,12 @@ The commands below are to be made on command line in the server.
 
 Download the file directly into the target directory using the WGET command and then change the permissions on the script to allow it to execute.
 
+First, create the directory if it does not already exist.
 ```
-mkdir ~/__scripts &&
+mkdir ~/__scripts
+```
+Enter the directory to grab the backup script and change permissions to make it executable.
+```
 cd ~/__scripts &&
 wget https://raw.githubusercontent.com/mlmedia/mysql-backup-script/master/mysql-backup.sh &&
 chmod -R 755 ~/__scripts/mysql-backup.sh
@@ -63,14 +67,14 @@ Set environment var for S3 bucket.  This presumes you have already set up a buck
 
 If you do not already have an S3 bucket set up, see the **_Requirements_** section of this README.  
 
-Create an S3BUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
+Create an S3DATABUCKET environment variable to the `/etc/environment` file so that it is accessible by cron.
 
 ```
 sudo nano /etc/environment
 ```
 Add the following line to the end of the file, using your S3 bucket name.
 ```
-S3BUCKET=your-bucket-name
+S3DATABUCKET=your-bucket-name
 ```
 
 Log out and log in again.

@@ -35,8 +35,11 @@ do
 	[ "$DBNAME" != "information_schema" ] &&
 	[ "$DBNAME" != "sys" ]
 	then
+		# format the db name to use dash for underscores and other special chars
+		CLEANNAME=`echo ${DBNAME} | tr [:upper:] [:lower:] | tr -c '[:alnum:]' '-' | tr ' ' '-' | tr -s '-'| sed 's/\-*$//'`;
+
 		# dump the data into a SQL file inside the target path
-		$MYSQLDUMP --login-path=local -e  $DBNAME | gzip > $TARGETPATH/${DBNAME}-$NOWDATE.sql.gz;
+		$MYSQLDUMP --login-path=local -e $DBNAME | gzip > $TARGETPATH/${CLEANNAME}-$NOWDATE.sql.gz;
 		printf "$DBNAME backed up to $TARGETPATH\n";
 	fi
 done
@@ -44,9 +47,9 @@ done
 # sync with Amazon S3 using the CLI (with server side encryption)
 # install AWS CLI with instructions found here: https://linuxconfig.org/install-aws-cli-on-ubuntu-18-04-bionic-beaver-linux
 # check for existence of environment variable
-if [ -z "$S3BUCKET" ]
+if [ -z "$S3DATABUCKET" ]
 then
-	echo "You need to set an ENVIRONMENT variable for the target S3BUCKET (e.g. export S3BUCKET=my-bucket-name)"
+	echo "You need to set an ENVIRONMENT variable for the target S3DATABUCKET (e.g. export S3DATABUCKET=my-bucket-name)"
 else
-	aws s3 sync $HOME/__data s3://$S3BUCKET/$SITENAME --delete --sse;
+	aws s3 sync $HOME/__data s3://$S3DATABUCKET/$SITENAME --delete --sse;
 fi
