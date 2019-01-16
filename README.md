@@ -117,10 +117,10 @@ SHELL=/bin/bash
 
 For example, the above it to set the script to run once a week at 4am on Monday.  In addition, the output will be logged to a file and time stamped.  
 
-In order to delete the old logs on a regular basis, add the following line to the crontab.  The following will automatically run every day at 5am and delete log files older than 25 days.
+In order to delete the old logs on a regular basis, add the following line to the crontab.  The following will automatically run every day at 6am and delete log files older than 25 days.
 
 ```
-0 5 * * * find $HOME/logs/*.log -mtime +25 -exec rm -f {} \; > /dev/null 2>&1
+0 6 * * * find $HOME/logs/*.log -mtime +25 -exec rm -f {} \; > /dev/null 2>&1
 ```
 
 ### More testing
