@@ -49,7 +49,8 @@ done
 # check for existence of environment variable
 if [ -z "$S3DATABUCKET" ]
 then
-	echo "You need to set an ENVIRONMENT variable for the target S3DATABUCKET (e.g. export S3DATABUCKET=my-bucket-name)"
+	echo "You need to set an ENVIRONMENT variable for the target S3DATABUCKET (e.g. export S3DATABUCKET=my-bucket-name)";
 else
+	echo "Synching data to AWS";
 	aws s3 sync $HOME/__data s3://$S3DATABUCKET/$SITENAME --delete --sse;
 fi
