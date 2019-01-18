@@ -37,7 +37,6 @@ do
 	then
 		# format the db name to use dash for underscores and other special chars
 		CLEANNAME=`echo ${DBNAME} | tr [:upper:] [:lower:] | tr -c '[:alnum:]' '-' | tr ' ' '-' | tr -s '-'| sed 's/\-*$//'`;
-
 		# dump the data into a SQL file inside the target path
 		$MYSQLDUMP --login-path=local -e $DBNAME | gzip > $TARGETPATH/${CLEANNAME}-$NOWDATE.sql.gz;
 		printf "$DBNAME backed up to $TARGETPATH\n";
