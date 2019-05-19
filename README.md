@@ -56,7 +56,7 @@ Test if cron will work with the script.
 /bin/sh -c "(export PATH=/usr/bin:/bin:/usr/local/bin; ~/__scripts/mysql-backup.sh </dev/null)"
 ```
 
-Configure the AWS CLI.
+### Configure the AWS CLI
 ```
 aws configure
 ```
@@ -124,4 +124,55 @@ In order to delete the old logs on a regular basis, add the following line to th
 ```
 
 ### More testing
-Check your `~/__data` and `~/logs` files and your S3 bucket for a few days to make sure it's working as expected.  
+Check your `~/__data` and `~/logs` files and your S3 bucket for a few days to make sure it's working as expected.
+
+
+### UPDATE: Fix for the SNAP_INSTANCE_NAME issue
+Unexpectedly, the AWS CLI stopped syncing with an error message for "SNAP_INSTANCE_NAME is not set" logged.  The fix is to run the following commands to update the AWS CLI installation.
+
+
+sudo apt-get install -y python-pip &&
+sudo pip install awscli boto boto3 --force-reinstall --upgrade &&
+sudo pip install awscli --force-reinstall --upgrade &&
+aws --version
+
+
+### STEPS TAKEN TO REMOVE SNAPCORE THAT FAILED
+Remove Snapcore
+```
+sudo rm -rf /var/cache/snapd/
+sudo apt autoremove --purge snapd gnome-software-plugin-snap
+sudo rm -fr ~/snap
+sudo apt purge snapd ubuntu-core-launcher squashfs-tools
+```
+
+Install / Upgrade Python
+```
+sudo apt install python3-pip
+```
+
+Update PIP
+```
+sudo pip3 install --upgrade pip
+```
+
+Re-install AWS CLI
+```
+sudo pip3 install awscli --upgrade --user
+```
+
+Append to the PATH variable.
+```
+nano ~/.profile
+```
+Add the following line to the end.
+```
+export PATH="$PATH":/.local/bin
+```
+Save and close.
+
+Copy AWS CLI to the right path
+```
+sudo cp ~/.local/bin/aws /usr/local/bin
+```
+Follow steps above for AWS configuration.
