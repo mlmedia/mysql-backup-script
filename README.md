@@ -130,9 +130,13 @@ Check your `~/__data` and `~/logs` files and your S3 bucket for a few days to ma
 ### UPDATE: Fix for the SNAP_INSTANCE_NAME issue
 Unexpectedly, the AWS CLI stopped syncing with a `SNAP_INSTANCE_NAME is not set` error logged.  The fix is to run the following commands to update the AWS CLI installation.
 
+SSH into the server and run the following commands.  
+
 ```
 sudo apt-get install -y python-pip &&
 sudo pip install awscli boto boto3 --force-reinstall --upgrade &&
 sudo pip install awscli --force-reinstall --upgrade &&
 aws --version
 ```
+
+Enter the password for `deploy`.
